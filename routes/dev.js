@@ -5,9 +5,25 @@ const Developer=require('../models/developer')
 
 
 //get all the developers
+router.get('/:id', async(req,res)=>{
+    try{
+        const allDeveloper= await Developer.find();
+        res.status(200).json(allDeveloper)
+    }
+    catch (err){
+        res.status(400).json({'message':"error"})
+    }
+})
 
-router.get('/',(req,res)=>{
-    res.send("API is working")
+//get one developer
+router.get('/one',async(req,res)=>{
+    try{
+  const singleDeveloper=await Developer.findById(req.params.id)
+  res.status(200).json(singleDeveloper)
+    }
+    catch(err){
+        res.status(400).json({'message':"error"})
+    }
 })
 
 //post/create a developer
