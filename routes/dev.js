@@ -58,7 +58,24 @@ catch(err){
 
 
 
+
 //delete a developer
 
+router.delete("/delete/:id", async(req,res)=>{
+    try{
+    const{id:_id}= await req.params;
+
+    const updatedDeveloper=await Developer.findByIdAndRemove(_id)
+    res.status(200).json({message:"Sucess"})
+    
+    }
+    catch(err){
+        res.status(400).json({message:"Error"}) 
+     }
+    
+    })
 
 module.exports=router
+
+
+//localhost:5000/satyam/delete/64c1e8fcd7dc6e50e1570dd5
